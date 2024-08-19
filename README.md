@@ -1,2 +1,2 @@
-# cpp_calculator
+# C++ Calculator
 A simple console calculator written in C++.
