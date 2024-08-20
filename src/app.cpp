@@ -4,6 +4,7 @@
 App::App()
 {
     this->calculator = new Calculator();
+    this->isQuit = false;
 }
 
 void App::run()
@@ -11,7 +12,6 @@ void App::run()
     std::cout << "Welcome to simple C++ Console Calculator!" << std::endl;
     this->printHelpMessage();
     Calculator *calculator = new Calculator();
-    bool isQuit = false;
     do
     {
         std::cout << "Please input a function number for calculation, h for help, and q to quit: " << std::endl;
@@ -23,15 +23,15 @@ void App::run()
         }
         else if (input == "2")
         {
-            std::cout << "Sorry, this function has not been implemented." << std::endl;
+            this->runSubtractionCalculation();
         }
         else if (input == "3")
         {
-            std::cout << "Sorry, this function has not been implemented." << std::endl;
+            this->runMultiplicationCalculation();
         }
         else if (input == "4")
         {
-            std::cout << "Sorry, this function has not been implemented." << std::endl;
+            this->runDivisionCalculation();
         }
         else if (input == "h")
         {
@@ -39,14 +39,14 @@ void App::run()
         }
         else if (input == "q")
         {
-            isQuit = true;
+            this->isQuit = true;
             std::cout << "Thanks for using Simple Console C++ Calculator." << std::endl;
         }
         else
         {
             std::cout << "We don't have this option \"" << input << "\"!" << std::endl;
         }
-    } while (!isQuit);
+    } while (!this->isQuit);
 }
 
 void App::printHelpMessage()
@@ -68,4 +68,40 @@ void App::runSumCalculation()
     std::cin >> addend2;
     double sum = this->calculator->sum(addend1, addend2);
     std::cout << "The result of " << addend1 << " + " << addend2 << " is " << sum << std::endl;
+}
+
+void App::runSubtractionCalculation()
+{
+    std::cout << "Please enter the first number as an minuend: ";
+    double minuend;
+    std::cin >> minuend;
+    std::cout << "Please enter the second number as an subtrahend: ";
+    double subtrahend;
+    std::cin >> subtrahend;
+    double difference = this->calculator->subtract(minuend, subtrahend);
+    std::cout << "The result of " << minuend << " - " << subtrahend << " is " << difference << std::endl;
+}
+
+void App::runMultiplicationCalculation()
+{
+    std::cout << "Please enter the first number as an multiplier: ";
+    double multiplier;
+    std::cin >> multiplier;
+    std::cout << "Please enter the second number as an multiplicand: ";
+    double multiplicand;
+    std::cin >> multiplicand;
+    double product = this->calculator->multiply(multiplier, multiplicand);
+    std::cout << "The result of " << multiplier << " x " << multiplicand << " is " << product << std::endl;
+}
+
+void App::runDivisionCalculation()
+{
+    std::cout << "Please enter the first number as an dividend: ";
+    double dividend;
+    std::cin >> dividend;
+    std::cout << "Please enter the second number as an divisor: ";
+    double divisor;
+    std::cin >> divisor;
+    double quotient = this->calculator->divide(dividend, divisor);
+    std::cout << "The result of " << dividend << " / " << divisor << " is " << quotient << std::endl;
 }

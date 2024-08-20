@@ -11,8 +11,12 @@ public:
 
 private:
     Calculator *calculator;
+    bool isQuit;
     void printHelpMessage();
     void runSumCalculation();
+    void runSubtractionCalculation();
+    void runMultiplicationCalculation();
+    void runDivisionCalculation();
 };
 
 #endif
